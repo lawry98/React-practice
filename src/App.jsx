@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { CountContext } from "./context";
 import { Navigate } from "react-router-dom";
 import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { countAtom } from "./store/atoms/count";
+import { countAtom, isEven } from "./store/atoms/count";
 
 
 function App() {
@@ -22,7 +22,20 @@ function Count() {
   return <div>
     <CountRenderer />
     <Buttons />
+    <EvenSelector></EvenSelector>
   </div>
+}
+
+function EvenSelector(){
+  const isEvenval = useRecoilValue(isEven);
+  if(isEvenval){
+    return(
+      <div>
+        It is even.
+      </div>
+    )
+  }
+  return ;
 }
 
 function CountRenderer() {
